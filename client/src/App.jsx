@@ -2,6 +2,9 @@
 import './App.css';
 import "./libraries/Web-Legos/Layouts/wl.css";
 
+// Library Imports
+import { useState } from 'react';
+
 // Component Imports
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import powerBrick from "./assets/images/power-brick.gif";
@@ -28,8 +31,8 @@ const authenticationManager = new AuthenticationManager(firebaseConfig, permissi
 authenticationManager.initialize();
 
 /** Site AnalyticsManager */
-const analyticsManager = new AnalyticsManager(firebaseConfig)
-analyticsManager.initialize();
+// const analyticsManager = new AnalyticsManager(firebaseConfig)
+// analyticsManager.initialize();
 
 const theme = createWLTheme();
 
@@ -44,13 +47,13 @@ export function App(props) {
   function AppContextProvider(props) {
     return (
       <AuthenticationManager.Context.Provider value={{authenticationManager}} >
-      <AnalyticsManager.Context.Provider value={{analyticsManager}} >
+      { /** <AnalyticsManager.Context.Provider value={{analyticsManager}} > */ }
       <TestingContext.Provider value={{isTestingEnvironment}} >
       <CurrentSignInContext.Provider value={{currentSignIn}} >
         {props.children}
       </CurrentSignInContext.Provider>
       </TestingContext.Provider>
-      </AnalyticsManager.Context.Provider>
+      {/** </AnalyticsManager.Context.Provider> */}
       </AuthenticationManager.Context.Provider >
     )
   }
@@ -73,13 +76,9 @@ export function App(props) {
         { isTestingEnvironment && <meta data-testid="wl-testing-flag" /> }
         <Router>
           <div className="app-content">
-              <section className="d-flex flex-column align-items-center justify-content-center" style={{height: "100vh", width: "100vw"}}>
-                <img src={powerBrick} alt="power-brick" data-testid="lego-brick" />
-                <Text h1 data-testid="title-text">BP-10700</Text>
-              </section>
             {/** Place Navigation Here */}
               <Routes>
-                {/** Place Routes Here */}
+                <Route path="/" element={<div>Home</div>} />
               </Routes>
             {/** Place Footer Here */}
           </div>
