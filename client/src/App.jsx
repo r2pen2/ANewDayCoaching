@@ -7,14 +7,11 @@ import { useState } from 'react';
 
 // Component Imports
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import powerBrick from "./assets/images/power-brick.gif";
-import { Text } from '@nextui-org/react';
 import { createContext } from 'react';
 
 // API Imports
 import { firebaseConfig } from './api/firebase.ts'
 import { AuthenticationManager, WLPermissionsConfig } from './libraries/Web-Legos/api/auth.ts'
-import { AnalyticsManager } from './libraries/Web-Legos/api/analytics.ts'
 import { WLThemeProvider, createWLTheme } from './libraries/Web-Legos/Layouts/WLThemes';
 
 /** Context to keep track of current user */
@@ -29,10 +26,6 @@ const permissions = new WLPermissionsConfig();
 /** Site AuthenticationManager */
 const authenticationManager = new AuthenticationManager(firebaseConfig, permissions);
 authenticationManager.initialize();
-
-/** Site AnalyticsManager */
-// const analyticsManager = new AnalyticsManager(firebaseConfig)
-// analyticsManager.initialize();
 
 const theme = createWLTheme();
 
