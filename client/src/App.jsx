@@ -40,13 +40,11 @@ export function App(props) {
   function AppContextProvider(props) {
     return (
       <AuthenticationManager.Context.Provider value={{authenticationManager}} >
-      { /** <AnalyticsManager.Context.Provider value={{analyticsManager}} > */ }
       <TestingContext.Provider value={{isTestingEnvironment}} >
       <CurrentSignInContext.Provider value={{currentSignIn}} >
         {props.children}
       </CurrentSignInContext.Provider>
       </TestingContext.Provider>
-      {/** </AnalyticsManager.Context.Provider> */}
       </AuthenticationManager.Context.Provider >
     )
   }
