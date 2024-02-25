@@ -13,6 +13,7 @@ import { createContext } from 'react';
 import { firebaseConfig } from './api/firebase.ts'
 import { AuthenticationManager, WLPermissionsConfig } from './libraries/Web-Legos/api/auth.ts'
 import { WLThemeProvider, createWLTheme } from './libraries/Web-Legos/Layouts/WLThemes';
+import Home from './routes/Home.jsx';
 
 /** Context to keep track of current user */
 export const CurrentSignInContext = createContext();
@@ -69,7 +70,7 @@ export function App(props) {
           <div className="app-content">
             {/** Place Navigation Here */}
               <Routes>
-                <Route path="/" element={<div>Home</div>} />
+                <Route path="/" element={<Home />} />
               </Routes>
             {/** Place Footer Here */}
           </div>

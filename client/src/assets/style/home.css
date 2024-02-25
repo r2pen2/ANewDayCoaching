@@ -1,0 +1,26 @@
+button {
+  background-color: #647659;
+  color: #F4FBFC !important;
+  padding: 10px 40px;
+  border: none;
+  filter: drop-shadow(0px 5px 3px rgba(0, 0, 0, 0.5));
+}
+
+h1 {
+  font-size: 36px !important;
+  font-weight: 400 !important;
+}
+
+p {
+  font-size: 24px;
+  font-family: "Kiwi Maru", serif !important;
+  font-style: normal !important;
+}
+
+.coaching-line {
+  background-color: #9FB8AD;
+  height: 5px;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
