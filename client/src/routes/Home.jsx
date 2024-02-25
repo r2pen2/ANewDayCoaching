@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { lightGreen, lightBlue } from '../assets/style/colors'
 import "../assets/style/home.css";
 import logo from "../assets/images/logo.png";
@@ -7,6 +7,8 @@ import glyph from "../assets/images/crystal.png";
 
 import {WLTextV2, WLHeaderV2} from "../libraries/Web-Legos/components/Text";
 import { Spacer } from '@nextui-org/react';
+
+import {WaveBottom, WaveTop} from "../libraries/Web-Legos/components/Waves"
 
 export default function Home() {
   
@@ -17,22 +19,34 @@ export default function Home() {
   
   const Splash = () => {
 
+    const Logo = () => (
+      <img src={logo} alt="logo-full" style={{maxWidth: 500, maxHeight: 500, height:"100%", width: "100%", filter: "drop-shadow(0px 0px 5px rgba(0,0,0,0.5)"}}/>
+    )
+
     return (
-      <section id="home" className="d-flex flex-row align-items-center justify-content-center w-100" style={{minHeight: 800, backgroundColor: sectionColors.home}}>
-        <img src={logo} style={{maxWidth: 670, height: "auto"}} alt="A New Day Coaching Logo" />
-        <div className="d-flex flex-column gap-2" style={{maxWidth: 800}}>
-          <hgroup className='text-left' style={{padding: 0}}>
-            <WLHeaderV2 h1>
-              One on one virtual and in person coaching for emerging adults: High School, College and postgraduate students.
-            </WLHeaderV2>
-            <div className="coaching-line" />
-            <WLTextV2>
-              Our coaches are committed to helping students reach their full potential by developing essential executive function skills. By partnering with our coaches, students can expect to enhance their organization, time management, task initiation and planning skills, empowering them to excel in their academics and beyond. We are here to provide personalized guidance tailored to meet the unique needs of each individual.
-            </WLTextV2>
-          </hgroup>
-          <div className="d-flex flex-row align-items-start justify-content-start gap-2">
-            <button>Book Now</button>
-            <button>My Apps</button>
+      <section id="home" className="d-flex flex-lg-row flex-column align-items-center justify-content-center w-100" style={{minHeight: 800, backgroundColor: sectionColors.home}}>
+        <div className="container">
+          <div className="row px-2 d-flex flex-row align-items-center justify-content-center">
+            <div className="col-xxl-5 col-lg-6 col-12 d-flex flex-column align-items-center justify-content-center">
+              <Logo />
+            </div>
+            <div className="col-xxl-5 col-lg-6 col-12 py-3 flex-column align-items-center justify-content-center">
+              <div className="d-flex flex-column gap-2" style={{maxWidth: 800}}>
+                <hgroup className='text-left' style={{padding: 0}}>
+                  <WLHeaderV2 h1>
+                    One on one virtual and in person coaching for emerging adults: High School, College and postgraduate students.
+                  </WLHeaderV2>
+                  <div className="coaching-line" />
+                  <WLTextV2>
+                    Our coaches are committed to helping students reach their full potential by developing essential executive function skills. By partnering with our coaches, students can expect to enhance their organization, time management, task initiation and planning skills, empowering them to excel in their academics and beyond. We are here to provide personalized guidance tailored to meet the unique needs of each individual.
+                  </WLTextV2>
+                </hgroup>
+                <div className="d-flex flex-row align-items-start justify-content-center justify-content-lg-start gap-2 pt-2">
+                  <button>Book Now</button>
+                  <button>My Apps</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -41,7 +55,8 @@ export default function Home() {
 
   const About = () => {
     return (
-      <section id="about" className="w-100" style={{backgroundColor: sectionColors.about}}>
+      <section id="about" className="w-100" style={{backgroundColor: sectionColors.about, position: "relative"}}>
+        <WaveBottom color={sectionColors.home}/>
         <div className="d-flex gap-5 flex-row align-items-center justify-content-center" style={{paddingInline: 250}}>
           <img src={rachel} style={{height: "100%", maxHeight: 500}} alt="Rachel Dayanim" />
           <div className="text-left">
