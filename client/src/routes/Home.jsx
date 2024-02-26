@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { lightGreen, lightBlue } from '../assets/style/colors'
+import { lightGreen, lightBlue, mint } from '../assets/style/colors'
 import "../assets/style/home.css";
 import logo from "../assets/images/logo.png";
 import rachel from "../assets/images/rachel.png";
@@ -10,11 +10,14 @@ import { Spacer } from '@nextui-org/react';
 
 import {WaveBottom, WaveTop} from "../libraries/Web-Legos/components/Waves"
 
+import {Accordion} from "@mantine/core"
+
 export default function Home() {
   
   const [sectionColors, setSectionColors] = React.useState({
     home: lightGreen,
-    about: lightBlue
+    about: lightBlue,
+    contact: mint
   })
   
   const Splash = () => {
@@ -42,8 +45,8 @@ export default function Home() {
                   </WLTextV2>
                 </hgroup>
                 <div className="d-flex flex-row align-items-start justify-content-center justify-content-lg-start gap-2 pt-2">
-                  <button>Book Now</button>
-                  <button>My Apps</button>
+                  <button className="coaching-button">Book Now</button>
+                  <button className="coaching-button">My Apps</button>
                 </div>
               </div>
             </div>
@@ -55,12 +58,12 @@ export default function Home() {
 
   const About = () => {
     return (
-      <section id="about" className="w-100" style={{backgroundColor: sectionColors.about, position: "relative"}}>
+      <section id="about" className="w-100 d-flex flex-column align-items-center pb-5" style={{backgroundColor: sectionColors.about, position: "relative"}}>
         <WaveBottom color={sectionColors.home}/>
-        <div className="d-flex gap-5 flex-row align-items-center justify-content-center" style={{paddingInline: 250}}>
-          <img src={rachel} style={{height: "100%", maxHeight: 500}} alt="Rachel Dayanim" />
+        <div className="d-flex gap-5 flex-row align-items-center justify-content-center px-3 pt-5" style={{maxWidth: 1400}}>
+          <img src={rachel} style={{height: "100%", maxHeight: 500}} alt="Rachel Dayanim" className='d-none d-lg-block' />
           <div className="text-left">
-            <WLHeaderV2 h1>About Rachel</WLHeaderV2>
+            <WLHeaderV2 h1 align="center">About Rachel</WLHeaderV2>
             <div className="coaching-line" />
             <WLTextV2>
               Rachel is the founder of A New Day Coaching, cultivating an innovative “work smarter, not harder” approach to mentorship for teens and college students with ADHD and executive function challenges. Rachel has also designed curricula on the topic of special needs and has presented at a wide array of conferences for several regional organizations on topics such as Executive Function and Learning Differences.
@@ -69,16 +72,17 @@ export default function Home() {
             </WLTextV2>
           </div>
         </div>
+        <img src={rachel} style={{height: "100%", maxHeight: 500, marginTop:"2rem"}} alt="Rachel Dayanim" className='d-block d-lg-none' />
         <Spacer y={2} />
-        <div className="d-flex gap-5 flex-row align-items-center justify-content-center" style={{paddingInline: 250}}>
-          <div className="w-50">
+        <div className="d-flex gap-5 flex-column flex-md-row align-items-center justify-content-center px-3" style={{maxWidth: 1400}}>
+          <div className="w-100 w-md-50">
             <WLHeaderV2 h1>Co-Active Approach</WLHeaderV2>
             <div className="coaching-line" />
             <WLTextV2 align="left">
               Rachel takes a “co-active” approach to coaching, a model founded on the belief that every client is naturally creative, resourceful, and whole. “Every individual has an inherent desire to succeed,” she says, “But they sometimes lack the requisite skills to do so. I consistently strive to understand each student’s own agenda and work around that framework instead of imposing my own.”
             </WLTextV2>
           </div>
-          <div className="w-50">
+          <div className="w-100 w-md-50">
             <WLHeaderV2 h1>Education and Interests</WLHeaderV2>
             <div className="coaching-line" />
             <WLTextV2 align="left">
@@ -113,25 +117,61 @@ export default function Home() {
     )
   
     return (
-      <section className="w-100 d-flex flex-column align-items-center justify-content-center py-2 px-2 px-xl-5" id="why-coaching" style={{zIndex: 2}}>
-        <section className="wl-glyph-section-two-items-no-actions d-none d-xl-flex align-items-center justify-content-center wl-gap-3">
+      <section className="w-100 d-flex flex-column align-items-center justify-content-center" id="why-coaching" style={{zIndex: 2, position: "relative"}}>
+        <WaveBottom color={sectionColors.about} flipX/>
+        <section className="wl-glyph-section-two-items-no-actions d-none d-xl-flex align-items-center justify-content-center wl-gap-3 px-2 px-lg-5">
             <Left />
             <div className="wl-glyph-section-two-items-no-actions-glyph-container d-flex flex-column align-items-center justify-content-center">
               <img src={glyph} alt="glyph" style={{minWidth: 150, maxWidth: 300}} data-testid="wl-glyph-section-glyph" />
             </div>
             <Right />
-          </section>
-          <section className="wl-glyph-section-two-items-no-actions d-flex flex-column d-xl-none">
-            <div className="wl-glyph-section-two-items-no-actions-md-container container-fluid">
-              <div className="row">
-                <section className="col-12 col-lg-6 d-flex flex-column align-items-center justify-content-center"><Left /></section>
-                <section className="col-12 col-lg-6 d-flex flex-column align-items-center justify-content-center"><Right /></section>
-              </div>
+        </section>
+        <section className="wl-glyph-section-two-items-no-actions d-flex flex-column d-xl-none px-2 px-lg-5">
+          <div className="wl-glyph-section-two-items-no-actions-md-container container-fluid">
+            <div className="row">
+              <section className="col-12 col-lg-6 d-flex flex-column align-items-center justify-content-center"><Left /></section>
+              <section className="col-12 col-lg-6 d-flex flex-column align-items-center justify-content-center"><Right /></section>
             </div>
-            <div className="wl-glyph-section-two-items-no-actions-glyph-container">
-              <img src={glyph} alt="glyph" style={{minWidth: 150, maxWidth: 300}} data-testid="wl-glyph-section-glyph" />
-            </div>
-          </section>
+          </div>
+          <div className="wl-glyph-section-two-items-no-actions-glyph-container">
+            <img src={glyph} alt="glyph" style={{minWidth: 150, maxWidth: 300}} data-testid="wl-glyph-section-glyph" />
+          </div>
+        </section>
+        <section id="secvices" className='w-100 d-flex flex-column align-items-center py-5 px-2'>
+          <WLHeaderV2>
+            Find What's Right For You:
+          </WLHeaderV2>
+          <div className="coaching-line" style={{maxWidth: 1000}} />
+          <Accordion variant='contained' style={{maxWidth: 1000, width: "100%"}}>
+            <Accordion.Item key="virtual" value="virtual">
+              <Accordion.Control style={{fontSize:"24px"}}>Virtual Coaching</Accordion.Control>
+              <Accordion.Panel>
+                <WLTextV2 align="left">
+                  Virtual coaching is a great way to receive support from the comfort of your own home. We use a variety of platforms to connect with our clients and provide the same level of support as in-person coaching. Virtual coaching is just as effective as in-person coaching and allows for flexibility in scheduling.
+                </WLTextV2>
+              </Accordion.Panel>
+            </Accordion.Item>
+            <Accordion.Item key="in-Person" value="in-Person">
+              <Accordion.Control style={{fontSize:"24px"}}>In-Person Coaching</Accordion.Control>
+              <Accordion.Panel>
+                <WLTextV2 align="left">
+                  In-Person coaching is a great way to receive support from the comfort of your own home. We use a variety of platforms to connect with our clients and provide the same level of support as in-person coaching. Virtual coaching is just as effective as in-person coaching and allows for flexibility in scheduling.
+                </WLTextV2>
+              </Accordion.Panel>
+            </Accordion.Item>
+          </Accordion>
+        </section>
+        <WaveTop color={sectionColors.contact} />
+      </section>
+    )
+  }
+
+  const Contact = () => {
+    return (
+      <section id="contact" clasName="d-flex flex-column justify-content-center align-items-center w-100" style={{backgroundColor: sectionColors.contact}}>
+        <p style={{fontSize: 24}}>
+          "Uniqueness is the spark that ignites change; it's the unconventional minds that carve new paths and redefine the world." - Author
+        </p>
       </section>
     )
   }
@@ -139,6 +179,7 @@ export default function Home() {
   return [
     <Splash />,
     <About />,
-    <WhyCoaching />
+    <WhyCoaching />,
+    <Contact />
   ]
 }

@@ -14,6 +14,8 @@ import { firebaseConfig } from './api/firebase.ts'
 import { AuthenticationManager, WLPermissionsConfig } from './libraries/Web-Legos/api/auth.ts'
 import { WLThemeProvider, createWLTheme } from './libraries/Web-Legos/Layouts/WLThemes';
 import Home from './routes/Home.jsx';
+import { MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
 
 /** Context to keep track of current user */
 export const CurrentSignInContext = createContext();
@@ -63,6 +65,7 @@ export function App(props) {
   // Return the app
   return (
     <div className="App d-flex flex-column align-items-center w-100" data-testid="app">
+      <MantineProvider>
       <WLThemeProvider theme={theme}>
       <AppContextProvider>
         { isTestingEnvironment && <meta data-testid="wl-testing-flag" /> }
@@ -77,6 +80,7 @@ export function App(props) {
         </Router>
       </AppContextProvider>
       </WLThemeProvider>
+      </MantineProvider>
     </div>
   );
 }
