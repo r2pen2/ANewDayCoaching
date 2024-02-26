@@ -4,13 +4,14 @@ import "../assets/style/home.css";
 import logo from "../assets/images/logo.png";
 import rachel from "../assets/images/rachel.png";
 import glyph from "../assets/images/crystal.png";
+import { IconAt } from '@tabler/icons-react';
 
 import {WLTextV2, WLHeaderV2} from "../libraries/Web-Legos/components/Text";
 import { Spacer } from '@nextui-org/react';
 
 import {WaveBottom, WaveTop} from "../libraries/Web-Legos/components/Waves"
 
-import {Accordion} from "@mantine/core"
+import {Accordion, Input, Textarea} from "@mantine/core"
 
 export default function Home() {
   
@@ -161,17 +162,23 @@ export default function Home() {
             </Accordion.Item>
           </Accordion>
         </section>
-        <WaveTop color={sectionColors.contact} />
       </section>
     )
   }
 
   const Contact = () => {
     return (
-      <section id="contact" clasName="d-flex flex-column justify-content-center align-items-center w-100" style={{backgroundColor: sectionColors.contact}}>
-        <p style={{fontSize: 24}}>
+      <section id="contact" className="d-flex flex-column align-items-center justify-content-center w-100 pb-5" style={{backgroundColor: sectionColors.contact, position: "relative"}}>
+      <WaveTop flipY color={"white"} />
+        <WLTextV2 size={24}>
           "Uniqueness is the spark that ignites change; it's the unconventional minds that carve new paths and redefine the world." - Author
-        </p>
+        </WLTextV2>
+        <form style={{backgroundColor: "white", maxWidth: 1000}} className='mt-3 p-2 p-md-3 w-100 d-flex flex-column align-items-center gap-2 shadow'>
+          <Input placeholder="Your Name" size='lg' aria-label='Your Name' className='kiwi w-100' />
+          <Input placeholder="Your Email" size='lg' aria-label='Your Email' className='kiwi w-100' leftSection={<IconAt size={16} />} />
+          <Textarea placeholder="Message" size='lg' aria-label='Message' className='kiwi w-100' />
+          <button className='coaching-button'>Speak With Me</button>
+        </form>
       </section>
     )
   }

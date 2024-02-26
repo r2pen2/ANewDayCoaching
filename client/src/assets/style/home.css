@@ -17,6 +17,10 @@ p {
   font-style: normal !important;
 }
 
+.kiwi * {
+  font-family: "Kiwi Maru", serif !important;
+}
+
 .coaching-line {
   background-color: #9FB8AD;
   height: 5px;
