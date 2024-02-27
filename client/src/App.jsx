@@ -16,6 +16,11 @@ import { WLThemeProvider, createWLTheme } from './libraries/Web-Legos/Layouts/WL
 import Home from './routes/Home.jsx';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
+import Navbar from './components/Navbar.jsx';
+import { WLHeader, WLHeaderV2 } from './libraries/Web-Legos/components/Text.jsx';
+import { Link, Text } from '@nextui-org/react';
+
+import  {FooterAuthButton} from "./libraries/Web-Legos/components/Auth.jsx"
 
 /** Context to keep track of current user */
 export const CurrentSignInContext = createContext();
@@ -71,11 +76,35 @@ export function App(props) {
         { isTestingEnvironment && <meta data-testid="wl-testing-flag" /> }
         <Router>
           <div className="app-content">
-            {/** Place Navigation Here */}
+            <Navbar />
               <Routes>
                 <Route path="/" element={<Home />} />
               </Routes>
-            {/** Place Footer Here */}
+              <footer className="pt-5 flex-column align-items-center justify-content-center">
+                <div className="d-flex flex-column align-items-center justify-content-center">
+                  <WLHeaderV2 size="$4xl" align="center">A New Day Coaching</WLHeaderV2>
+                  <Link href="mailto:rachel@anewdaycoaching.com">
+                    <Text css={{textDecoration:"underline"}}>rachel@anewdaycoaching.com</Text>
+                  </Link>
+                  <Link href="callto:2027982343">
+                    <Text css={{textDecoration:"underline"}}>(202) 798-2343</Text>
+                  </Link>
+                </div>
+                <div className="d-lg-flex w-100 d-none flex-row gap-2 align-items-end justify-content-around">
+                  <Link href="https://www.joed.dev">
+                    <Text css={{textDecoration:"underline"}}>Web Designer: Joe Dobbelaar</Text>
+                  </Link>
+                  <FooterAuthButton link authManager={authenticationManager} currentSignIn={currentSignIn} setCurrentSignIn={setCurrentSignIn}/>
+                </div>
+                <div className="d-flex d-lg-none flex-row gap-2 align-items-center justify-content-center">
+                  <Link href="https://www.joed.dev">
+                    <Text css={{textDecoration:"underline"}}>Web Designer: Joe Dobbelaar</Text>
+                  </Link>
+                </div>
+                <div className="d-flex d-lg-none flex-row gap-2 align-items-center justify-content-center">
+                  <FooterAuthButton link authManager={authenticationManager} currentSignIn={currentSignIn} setCurrentSignIn={setCurrentSignIn}/>
+                </div>
+              </footer>
           </div>
         </Router>
       </AppContextProvider>

@@ -119,7 +119,7 @@ export default function Home() {
   
     return (
       <section className="w-100 d-flex flex-column align-items-center justify-content-center" id="why-coaching" style={{zIndex: 2, position: "relative"}}>
-        <WaveBottom color={sectionColors.about} flipX/>
+        <WaveBottom color={sectionColors.about} flipX />
         <section className="wl-glyph-section-two-items-no-actions d-none d-xl-flex align-items-center justify-content-center wl-gap-3 px-2 px-lg-5">
             <Left />
             <div className="wl-glyph-section-two-items-no-actions-glyph-container d-flex flex-column align-items-center justify-content-center">
@@ -138,7 +138,7 @@ export default function Home() {
             <img src={glyph} alt="glyph" style={{minWidth: 150, maxWidth: 300}} data-testid="wl-glyph-section-glyph" />
           </div>
         </section>
-        <section id="secvices" className='w-100 d-flex flex-column align-items-center py-5 px-2'>
+        <section id="services" className='w-100 d-flex flex-column align-items-center py-5 px-2'>
           <WLHeaderV2>
             Find What's Right For You:
           </WLHeaderV2>
@@ -170,15 +170,18 @@ export default function Home() {
     return (
       <section id="contact" className="d-flex flex-column align-items-center justify-content-center w-100 pb-5" style={{backgroundColor: sectionColors.contact, position: "relative"}}>
       <WaveTop flipY color={"white"} />
-        <WLTextV2 size={24}>
-          "Uniqueness is the spark that ignites change; it's the unconventional minds that carve new paths and redefine the world." - Author
-        </WLTextV2>
-        <form style={{backgroundColor: "white", maxWidth: 1000}} className='mt-3 p-2 p-md-3 w-100 d-flex flex-column align-items-center gap-2 shadow'>
-          <Input placeholder="Your Name" size='lg' aria-label='Your Name' className='kiwi w-100' />
-          <Input placeholder="Your Email" size='lg' aria-label='Your Email' className='kiwi w-100' leftSection={<IconAt size={16} />} />
-          <Textarea placeholder="Message" size='lg' aria-label='Message' className='kiwi w-100' />
-          <button className='coaching-button'>Speak With Me</button>
-        </form>
+        <Spacer y={2} />
+        <div style={{maxWidth: 1000}} className='mt-3 px-2 px-md-3 w-100 d-flex flex-column align-items-center'>
+          <WLTextV2 size={24}>
+            "Uniqueness is the spark that ignites change; it's the unconventional minds that carve new paths and redefine the world."
+          </WLTextV2>
+          <form style={{backgroundColor: "white", }} className='shadow w-100 p-2 p-md-3 d-flex flex-column align-items-center gap-2'>
+            <Input placeholder="Your Name" size='lg' aria-label='Your Name' className='kiwi w-100' />
+            <Input placeholder="Your Email" size='lg' aria-label='Your Email' className='kiwi w-100' leftSection={<IconAt size={16} />} />
+            <Textarea placeholder="Message" size='lg' aria-label='Message' className='kiwi w-100' />
+            <button className='coaching-button'>Speak With Me</button>
+          </form>
+        </div>
       </section>
     )
   }
