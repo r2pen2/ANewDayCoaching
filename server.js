@@ -21,8 +21,8 @@ app.use(fileUpload());
 dotenv.config();
 
 // Start listening on defined port
-app.listen(25565, () => {
-    console.log('Now listening on port ' + 25565);
+app.listen(3005, () => {
+    console.log('Now listening on port ' + 3005);
 });
 
 // Serve static files
