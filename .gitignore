@@ -1,4 +1,5 @@
-/config/serviceAccountKey.json
+./config/serviceAccountKey.json
+config
 
 # Logs
 logs
