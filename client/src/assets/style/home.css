@@ -28,3 +28,38 @@ p {
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
 }
+
+.why-paper::after {
+  content: "";
+  background-color: #E6F2EF33;
+  height: 0%;
+  width: 100%;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  transition: all 0.25s ease;
+}
+
+.why-paper {
+  position: relative;
+}
+
+.why-paper:hover::after {
+  height: 100%;
+}
+
+.why-paper strong {
+  transition: all 0.25s ease;
+}
+.why-paper p {
+  transition: all 0.25s ease;
+}
+
+.why-paper:hover p {
+  font-size: large !important;
+}
+
+.why-paper:hover strong {
+  color: #54962b;
+  font-size: x-large !important;
+}

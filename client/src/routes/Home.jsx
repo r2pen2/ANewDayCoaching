@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 import { lightGreen, lightBlue, mint } from '../assets/style/colors'
 import "../assets/style/home.css";
 import logo from "../assets/images/logo.png";
-import rachel from "../assets/images/rachel.png";
+import rachel from "../assets/images/rachel.jpg";
 import glyph from "../assets/images/crystal.png";
 import { IconAt } from '@tabler/icons-react';
 
-import {WLTextV2, WLHeaderV2} from "../libraries/Web-Legos/components/Text";
-import { Spacer } from '@nextui-org/react';
+import {WLTextV2, WLHeaderV2, WLText} from "../libraries/Web-Legos/components/Text";
+import { Link, Spacer } from '@nextui-org/react';
 
 import {WaveBottom, WaveTop} from "../libraries/Web-Legos/components/Waves"
 
-import {Accordion, Input, Textarea} from "@mantine/core"
+import {Accordion, Input, Paper, Textarea} from "@mantine/core"
 
 export default function Home() {
   
@@ -38,11 +38,11 @@ export default function Home() {
               <div className="d-flex flex-column gap-2" style={{maxWidth: 800}}>
                 <hgroup className='text-left' style={{padding: 0}}>
                   <WLHeaderV2 h1>
-                    One on one virtual and in person coaching for emerging adults: High School, College and postgraduate students.
+                    Transform Your Tomorrow: Executive Function Coaching for Teens and Young Adults
                   </WLHeaderV2>
                   <div className="coaching-line" />
                   <WLTextV2>
-                    Our coaches are committed to helping students reach their full potential by developing essential executive function skills. By partnering with our coaches, students can expect to enhance their organization, time management, task initiation and planning skills, empowering them to excel in their academics and beyond. We are here to provide personalized guidance tailored to meet the unique needs of each individual.
+                    Nothing should stand in the way of a student’s ability to realize their full potential. As an Executive Function Coach, I combine the educational elements of academic tutoring with the benefits of ADHD coaching. By tailoring my approach to meet each student’s unique needs, I aim to help individuals maximize their strengths while targeting specific areas that need support. Together we work on improving organizational and time management skills in a judgment-free environment, ensuring that each student has the necessary tools to excel in the academic world and beyond.
                   </WLTextV2>
                 </hgroup>
                 <div className="d-flex flex-row align-items-start justify-content-center justify-content-lg-start gap-2 pt-2">
@@ -91,6 +91,33 @@ export default function Home() {
             </WLTextV2>
           </div>
         </div>
+      </section>
+    )
+  }
+
+  const About2 = () => {
+    return (
+      <section id="about" className="w-100 d-flex flex-column align-items-center pb-5" style={{backgroundColor: sectionColors.about, position: "relative"}}>
+        <WaveBottom color={sectionColors.home}/>
+        <div className="d-flex gap-5 flex-row align-items-center justify-content-center px-3 pt-5" style={{maxWidth: 1400}}>
+          <img src={rachel} style={{height: "100%", maxHeight: 500}} alt="Rachel Dayanim" className='d-none d-lg-block' />
+          <div className="text-left">
+            <WLHeaderV2 h1 align="center">Meet Your Coach</WLHeaderV2>
+            <div className="coaching-line" />
+            <WLTextV2>
+              Hi, I am Rachel Dayanim and I am excited to partner with you on your coaching journey. As an Executive Function Coach and Learning Specialist, I have worked for over twenty years supporting students of all ages both in schools and through my private practice. I also served as the Director of Student Support at an independent school and I am currently an instructional coach for ADAC and a Collegiate Learning Specialist at Focus Collegiate, supporting college students as they navigate their higher education experience. 
+            </WLTextV2>
+            <Spacer y={0.5} />
+            <WLTextV2>
+              Many of my clients have neurodiverse profiles (Autism, ADHD, Asperger's and other learning differences), and I partner with them to recognize their strengths and abilities, create and implement tools to support their success and help them achieve their personal goals. 
+            </WLTextV2>
+            <Spacer y={0.5} />
+            <WLTextV2>
+              I earned a Master of Arts in Special Education from Columbia University, with a specialty in Learning Disabilities and an ADHD Coaching Certification from JST Coaching. Additionally, I graduated with a Bachelor of Arts degree in Early Childhood and Elementary Education from Yeshiva University. 
+            </WLTextV2>
+          </div>
+        </div>
+        <img src={rachel} style={{height: "100%", maxHeight: 500, marginTop:"2rem"}} alt="Rachel Dayanim" className='d-block d-lg-none' />
       </section>
     )
   }
@@ -165,6 +192,86 @@ export default function Home() {
       </section>
     )
   }
+  const WhyCoaching2 = () => {
+    
+    const WhyPaper = ({children}) => (
+      <div className="p-2 col-6 col-md-4 col-xl-3">
+        <Paper shadow="sm" radius="xs" withBorder p="xl" className='why-paper h-100 d-flex flex-column align-items-center justify-content-center'>
+          <WLTextV2 size={20}>{children}</WLTextV2>
+        </Paper>
+      </div>
+    )
+
+    return (
+      <section className="w-100 d-flex flex-column align-items-center justify-content-center" id="why-coaching" style={{zIndex: 2, position: "relative"}}>
+        <WaveBottom color={sectionColors.about} flipX />
+        <section className="d-flex flex-column w-100 align-items-center justify-content-center px-2 px-lg-5">
+          <WLHeaderV2 h1>Why work with an Executive Function Coach?</WLHeaderV2>
+          <div className="container d-flex flex-column align-items-center">
+            <div className="coaching-line"/>
+            <WLTextV2 size={24}>
+              Executive Function Coaching helps students:
+            </WLTextV2>
+            <div className="row w-100 d-flex flex-row justify-content-center" >
+              <WhyPaper>**Navigate** their Path</WhyPaper>
+              <WhyPaper>**Discover** their Strengths</WhyPaper>
+              <WhyPaper>Find **Direction**</WhyPaper>
+              <WhyPaper>**Overcome** obstacles</WhyPaper>
+              <WhyPaper>Stay **Accountable**</WhyPaper>
+              <WhyPaper>Get **Organized**</WhyPaper>
+              <WhyPaper>**Create** goal-oriented systems</WhyPaper>
+              <WhyPaper>**Achieve** their Goals</WhyPaper>
+            </div>
+          </div>
+        </section>
+        <section id="services" className='w-100 d-flex flex-column align-items-center py-5 px-2'>
+          <WLHeaderV2>
+            Services:
+          </WLHeaderV2>
+          <div className="coaching-line" style={{maxWidth: 1000}} />
+          <Accordion variant='contained' style={{maxWidth: 1000, width: "100%"}}>
+            <Accordion.Item key="coaching" value="coaching">
+              <Accordion.Control style={{fontSize:"24px"}}>Coaching</Accordion.Control>
+              <Accordion.Panel>
+                <WLTextV2 align="left">
+                  Weekly or bi-weekly one-on-one coaching sessions that provide personal guidance tailored to each student's unique needs. All 60-minute sessions may be conducted in-person or virtually (depending on the student's location and preference). Monthly coaching packages are available.
+                </WLTextV2>
+              </Accordion.Panel>
+            </Accordion.Item>
+            <Accordion.Item key="workshops" value="workshops">
+              <Accordion.Control style={{fontSize:"24px"}}>Workshops and Training</Accordion.Control>
+              <Accordion.Panel>
+                <WLTextV2 align="left">
+                  Available for professional development workshops and teacher training.  All workshops are customized to meet the needs of your specific organization. Sample topics include: 
+                </WLTextV2>
+                <div className="container">
+                  <div className="row w-100">
+                    <div className="p-2 col-12 col-md-4">
+                      <WLTextV2>**Executive Functioning 101**: The Basics</WLTextV2>
+                    </div>
+                    <div className="p-2 col-12 col-md-4">
+                      <WLTextV2>**What the EF?!**: Helping Students Find Success through Executive Function Skill Development</WLTextV2>
+                    </div>
+                    <div className="p-2 col-12 col-md-4">
+                      <WLTextV2>**Empowering through Executive Function**: Workshop focusing on Supports for Writing, Project-Planning, and Assessments</WLTextV2>
+                    </div>
+                  </div>
+                </div>
+              </Accordion.Panel>
+            </Accordion.Item>
+            <Accordion.Item key="courses" value="courses">
+              <Accordion.Control style={{fontSize:"24px"}}>Courses (Coming Soon!)</Accordion.Control>
+              <Accordion.Panel>
+                <WLTextV2 align="left">
+                  You're early! Courses will be listed here when they're available.
+                </WLTextV2>
+              </Accordion.Panel>
+            </Accordion.Item>
+          </Accordion>
+        </section>
+      </section>
+    )
+  }
 
   const Contact = () => {
     return (
@@ -175,12 +282,23 @@ export default function Home() {
           <WLTextV2 size={24}>
             "Uniqueness is the spark that ignites change; it's the unconventional minds that carve new paths and redefine the world."
           </WLTextV2>
+          <Spacer y={0.5} />
           <form style={{backgroundColor: "white", }} className='shadow w-100 p-2 p-md-3 d-flex flex-column align-items-center gap-2'>
             <Input placeholder="Your Name" size='lg' aria-label='Your Name' className='kiwi w-100' />
             <Input placeholder="Your Email" size='lg' aria-label='Your Email' className='kiwi w-100' leftSection={<IconAt size={16} />} />
             <Textarea placeholder="Message" size='lg' aria-label='Message' className='kiwi w-100' />
-            <button className='coaching-button'>Speak With Me</button>
+            <button className='coaching-button'>Let's Connect</button>
           </form>
+          <Spacer y={1} />
+          <WLTextV2>
+            Organize - Manage Your Time - Plan - Prioritize - Initiate - Maintain Focus
+          </WLTextV2>
+          <WLTextV2>
+            Rachel Dayanim
+          </WLTextV2>
+          <Link href="callto:2027982343">
+            (202) 798-2343
+          </Link>
         </div>
       </section>
     )
@@ -188,8 +306,8 @@ export default function Home() {
   
   return [
     <Splash />,
-    <About />,
-    <WhyCoaching />,
+    <About2 />,
+    <WhyCoaching2 />,
     <Contact />
   ]
 }
