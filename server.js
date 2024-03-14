@@ -10,6 +10,8 @@ const siteRules = require('./libraries/Server-Legos/siteRules');
 const SiteAuthenticationManager = require('./libraries/Server-Legos/siteAuthV2');
 const fileUpload = require('express-fileupload');
 
+const serverKey = "ANDC"
+
 // Init express application
 const app = express();
 
@@ -33,12 +35,12 @@ app.use(bodyParser.json({ limit: "50mb"}));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb"}));
 
 // Server site text
-const siteTextManager = new SiteTextManager("BP-10700");
+const siteTextManager = new SiteTextManager(serverKey);
 const siteTextRouter = siteTextManager.getRouter();
 app.use("/site-text", siteTextRouter);
 
 // Server site images
-const siteImageManager = new SiteImageManager("BP-10700");
+const siteImageManager = new SiteImageManager(serverKey);
 const siteImageRouter = siteImageManager.getRouter();
 app.use("/site-images", siteImageRouter);
 
@@ -50,7 +52,7 @@ app.use("/site-rules", siteRules);
 // app.use("/site-mail", siteMail);
 
 // Server site authentication
-const siteAuthenticationManager = new SiteAuthenticationManager(process.env.KEY, "BP-10700");
+const siteAuthenticationManager = new SiteAuthenticationManager(process.env.ANDCUSERKEY, serverKey);
 const siteAuthenticationRouter = siteAuthenticationManager.getRouter();
 app.use("/site-auth", siteAuthenticationRouter);
 
