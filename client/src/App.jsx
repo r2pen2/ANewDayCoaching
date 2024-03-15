@@ -3,7 +3,7 @@ import './App.css';
 import "./libraries/Web-Legos/Layouts/wl.css";
 
 // Library Imports
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Component Imports
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";

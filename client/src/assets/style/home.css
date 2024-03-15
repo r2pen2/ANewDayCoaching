@@ -30,6 +30,7 @@ p {
 }
 
 .why-paper::after {
+  pointer-events: none;
   content: "";
   background-color: #E6F2EF33;
   height: 0%;
