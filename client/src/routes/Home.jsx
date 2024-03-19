@@ -185,7 +185,7 @@ export default function Home() {
 
     return (
       <section id="contact" className="d-flex flex-column align-items-center justify-content-center w-100 pb-5" style={{backgroundColor: sectionColors.contact, position: "relative"}}>
-      <WaveTop flipY color={"white"} />
+      <WaveTop color={"white"} />
         <Spacer y={2} />
         <div style={{maxWidth: 1000}} className='mt-3 gap-2 px-2 px-md-3 w-100 d-flex flex-column align-items-center'>
           <WLTextV2 size={24} editable={userCanEditText} firestoreId="contact-quote" />
