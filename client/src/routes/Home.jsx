@@ -5,9 +5,11 @@ import logo from "../assets/images/logo.png";
 import rachel from "../assets/images/rachel.jpg";
 import glyph from "../assets/images/crystal.png";
 import { IconAt } from '@tabler/icons-react';
+import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
 
-import {WLTextV2, WLHeaderV2, WLText} from "../libraries/Web-Legos/components/Text";
-import { Link, Spacer } from '@nextui-org/react';
+import {WLTextV2, WLHeaderV2 } from "../libraries/Web-Legos/components/Text";
+import {WLImageV2} from "../libraries/Web-Legos/components/Images.jsx"
+import { Link, Modal, Spacer, Text } from '@nextui-org/react';
 
 import {WaveBottom, WaveTop} from "../libraries/Web-Legos/components/Waves"
 
@@ -18,6 +20,8 @@ import { AuthenticationManager } from '../libraries/Web-Legos/api/auth.ts';
 import { ANDCMailManager } from '../App';
 import { FormResponse } from '../libraries/Web-Legos/api/admin.ts';
 
+import ReCAPTCHA from "react-google-recaptcha";
+
 export default function Home() {
   
   const [sectionColors, setSectionColors] = React.useState({
@@ -25,6 +29,10 @@ export default function Home() {
     about: lightBlue,
     contact: mint
   })
+
+
+  const [recaptchaModalOpen, setRecaptchaModalOpen] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const {currentSignIn} = useContext(CurrentSignInContext);
   const {authenticationManager} = useContext(AuthenticationManager.Context)
@@ -74,7 +82,7 @@ export default function Home() {
       <section id="about" className="w-100 d-flex flex-column align-items-center pb-5" style={{backgroundColor: sectionColors.about, position: "relative"}}>
         <WaveBottom color={sectionColors.home}/>
         <div className="d-flex gap-5 flex-row align-items-center justify-content-center px-3 pt-5" style={{maxWidth: 1400}}>
-          <img src={rachel} style={{height: "100%", maxHeight: 500}} alt="Rachel Dayanim" className='d-none d-lg-block' />
+          <WLImageV2 editable={userCanEditImages} firestoreId="about-headshot" style={{height: "100%", maxHeight: 500}} alt="Rachel Dayanim" className='d-none d-lg-block' />
           <div className="text-left">
             <WLHeaderV2 h1 align="center" editable={userCanEditText} firestoreId="about-header" />
             <div className="coaching-line" />
@@ -160,7 +168,44 @@ export default function Home() {
   }
 
   const Contact = () => {
+    
+    const ThankYou = () => (
+      <div className="d-flex flex-column align-items-center justify-content-center">
+        <MarkEmailReadOutlinedIcon style={{fontSize: 64}} />
+        <Text>
+          Thanks for reaching out! I'll be in contact with you shortly.
+        </Text>
+      </div>
+    )
 
+    return (
+      <section id="contact" className="d-flex flex-column align-items-center justify-content-center w-100 pb-5" style={{backgroundColor: sectionColors.contact, position: "relative"}}>
+      <WaveTop flipY color={"white"} />
+        <Spacer y={2} />
+        <div style={{maxWidth: 1000}} className='mt-3 gap-2 px-2 px-md-3 w-100 d-flex flex-column align-items-center'>
+          <WLTextV2 size={24} editable={userCanEditText} firestoreId="contact-quote" />
+          <Spacer y={0.5} />
+          <form style={{backgroundColor: "white", }} className='shadow w-100 p-2 p-md-3 d-flex flex-column align-items-center gap-2'>
+            { !formSubmitted && <Input id="name" placeholder="Your Name" size='lg' aria-label='Your Name' className='kiwi w-100' /> }
+            { !formSubmitted && <Input id="email" placeholder="Your Email" size='lg' aria-label='Your Email' className='kiwi w-100' leftSection={<IconAt size={16} />} /> }
+            { !formSubmitted && <Textarea id="message" placeholder="Message" size='lg' aria-label='Message' className='kiwi w-100' /> }
+            { !formSubmitted && <button className='coaching-button' onClick={() => setRecaptchaModalOpen(true)}>Let's Connect</button> }
+            { formSubmitted && <ThankYou /> }
+          </form>
+          <Spacer y={1} />
+          <WLTextV2 editable={userCanEditText} firestoreId="contact-ticker" />
+          <WLTextV2 editable={userCanEditText} firestoreId="contact-name" />
+          <Link href="callto:2027982343">
+            (202) 798-2343
+          </Link>
+        </div>
+      </section>
+    )
+  }
+
+  const CaptchaModal = () => {
+
+    
     function sendForm() {
       function getEmailBody() {
         const body = `Name: ${document.getElementById("name").value}\n` +
@@ -183,34 +228,41 @@ export default function Home() {
       res.sendFormData();
     }
 
-    return (
-      <section id="contact" className="d-flex flex-column align-items-center justify-content-center w-100 pb-5" style={{backgroundColor: sectionColors.contact, position: "relative"}}>
-      <WaveTop color={"white"} />
-        <Spacer y={2} />
-        <div style={{maxWidth: 1000}} className='mt-3 gap-2 px-2 px-md-3 w-100 d-flex flex-column align-items-center'>
-          <WLTextV2 size={24} editable={userCanEditText} firestoreId="contact-quote" />
-          <Spacer y={0.5} />
-          <form style={{backgroundColor: "white", }} className='shadow w-100 p-2 p-md-3 d-flex flex-column align-items-center gap-2'>
-            <Input id="name" placeholder="Your Name" size='lg' aria-label='Your Name' className='kiwi w-100' />
-            <Input id="email" placeholder="Your Email" size='lg' aria-label='Your Email' className='kiwi w-100' leftSection={<IconAt size={16} />} />
-            <Textarea id="message" placeholder="Message" size='lg' aria-label='Message' className='kiwi w-100' />
-            <button className='coaching-button' onClick={sendForm}>Let's Connect</button>
-          </form>
-          <Spacer y={1} />
-          <WLTextV2 editable={userCanEditText} firestoreId="contact-ticker" />
-          <WLTextV2 editable={userCanEditText} firestoreId="contact-name" />
-          <Link href="callto:2027982343">
-            (202) 798-2343
-          </Link>
-        </div>
-      </section>
-    )
+  function handleCaptchaComplete(v) {
+    if (v.length < 1) {
+      setRecaptchaModalOpen(false);
+      return;
+    }
+    sendForm();
+    setFormSubmitted(true);
+    setRecaptchaModalOpen(false);
+  }
+
+    return(<Modal
+      blur
+      open={recaptchaModalOpen}
+      onClose={() => setRecaptchaModalOpen(false)}
+      closeButton
+    >
+      <Modal.Body      
+        className="d-flex flex-column w-100 align-items-center text-center py-3"
+      >
+        <Text>
+          One last thing:
+        </Text>
+        <ReCAPTCHA
+          onChange={handleCaptchaComplete}
+          sitekey="6LfuCIwmAAAAAOx25tZVJk5Jrw4hjjYWBPHU4IhU"
+        />
+      </Modal.Body>
+    </Modal>)
   }
   
   return [
     <Splash />,
     <About2 />,
     <WhyCoaching2 />,
+    <CaptchaModal />,
     <Contact />
   ]
 }
