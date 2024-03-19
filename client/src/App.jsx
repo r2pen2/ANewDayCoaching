@@ -22,6 +22,11 @@ import { Link, Text } from '@nextui-org/react';
 
 import  {FooterAuthButton} from "./libraries/Web-Legos/components/Auth.jsx"
 
+import {MailManager} from "./libraries/Web-Legos/api/mail.ts"
+
+export const ANDCMailManager = new MailManager();
+ANDCMailManager.addRecipientEmail("joedobbelaar@gmail.com");
+
 /** Context to keep track of current user */
 export const CurrentSignInContext = createContext();
 

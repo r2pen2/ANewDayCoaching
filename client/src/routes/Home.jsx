@@ -15,6 +15,9 @@ import {Accordion, Input, Paper, Textarea} from "@mantine/core"
 import { CurrentSignInContext } from '../App';
 import { AuthenticationManager } from '../libraries/Web-Legos/api/auth.ts';
 
+import { ANDCMailManager } from '../App';
+import { FormResponse } from '../libraries/Web-Legos/api/admin.ts';
+
 export default function Home() {
   
   const [sectionColors, setSectionColors] = React.useState({
@@ -43,11 +46,11 @@ export default function Home() {
     return (
       <section id="home" className="d-flex flex-lg-row flex-column align-items-center justify-content-center w-100" style={{minHeight: 800, backgroundColor: sectionColors.home}}>
         <div className="container">
-          <div className="row px-2 d-flex flex-row align-items-center justify-content-center">
+          <div className="row px-2 py-5 d-flex flex-row align-items-center justify-content-center">
             <div className="col-xxl-5 col-lg-6 col-12 d-flex flex-column align-items-center justify-content-center">
               <Logo />
             </div>
-            <div className="col-xxl-5 col-lg-6 col-12 py-3 flex-column align-items-center justify-content-center">
+            <div className="col-lg-6 col-12 py-3 flex-column align-items-center justify-content-center">
               <div className="d-flex flex-column gap-2" style={{maxWidth: 800}}>
                 <hgroup className='text-left' style={{padding: 0}}>
                   <WLHeaderV2 h1 editable={userCanEditText} firestoreId="main-header" />
@@ -157,6 +160,29 @@ export default function Home() {
   }
 
   const Contact = () => {
+
+    function sendForm() {
+      function getEmailBody() {
+        const body = `Name: ${document.getElementById("name").value}\n` +
+          `Email: ${document.getElementById("email").value}\n` +
+          `Message: ${document.getElementById("message").value}`;
+        return body;
+      }
+
+      ANDCMailManager.sendMail(
+        `New ANewDayCoaching Contact Form Submission from ${document.getElementById("name").value}`,
+        getEmailBody()
+      );
+
+      const res = new FormResponse();
+      res.content["Name"] = document.getElementById("name").value;
+      res.content["Email"] = document.getElementById("email").value;
+      res.content["Message"] = document.getElementById("message").value;
+      res.shortStrings.formId = "contact";
+      res.shortStrings.formTitle = "Contact";
+      res.sendFormData();
+    }
+
     return (
       <section id="contact" className="d-flex flex-column align-items-center justify-content-center w-100 pb-5" style={{backgroundColor: sectionColors.contact, position: "relative"}}>
       <WaveTop flipY color={"white"} />
@@ -165,10 +191,10 @@ export default function Home() {
           <WLTextV2 size={24} editable={userCanEditText} firestoreId="contact-quote" />
           <Spacer y={0.5} />
           <form style={{backgroundColor: "white", }} className='shadow w-100 p-2 p-md-3 d-flex flex-column align-items-center gap-2'>
-            <Input placeholder="Your Name" size='lg' aria-label='Your Name' className='kiwi w-100' />
-            <Input placeholder="Your Email" size='lg' aria-label='Your Email' className='kiwi w-100' leftSection={<IconAt size={16} />} />
-            <Textarea placeholder="Message" size='lg' aria-label='Message' className='kiwi w-100' />
-            <button className='coaching-button'>Let's Connect</button>
+            <Input id="name" placeholder="Your Name" size='lg' aria-label='Your Name' className='kiwi w-100' />
+            <Input id="email" placeholder="Your Email" size='lg' aria-label='Your Email' className='kiwi w-100' leftSection={<IconAt size={16} />} />
+            <Textarea id="message" placeholder="Message" size='lg' aria-label='Message' className='kiwi w-100' />
+            <button className='coaching-button' onClick={sendForm}>Let's Connect</button>
           </form>
           <Spacer y={1} />
           <WLTextV2 editable={userCanEditText} firestoreId="contact-ticker" />

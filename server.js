@@ -10,6 +10,9 @@ const siteRules = require('./libraries/Server-Legos/siteRules');
 const SiteAuthenticationManager = require('./libraries/Server-Legos/siteAuthV2');
 const fileUpload = require('express-fileupload');
 
+const SiteMailManager = require('./libraries/Server-Legos/siteMail.js');
+const SiteFormManager = require('./libraries/Server-Legos/siteForms.js');
+
 const serverKey = "ANDC"
 
 // Init express application
@@ -43,6 +46,16 @@ app.use("/site-text", siteTextRouter);
 const siteImageManager = new SiteImageManager(serverKey);
 const siteImageRouter = siteImageManager.getRouter();
 app.use("/site-images", siteImageRouter);
+
+// Server site mail
+const siteMailManager = new SiteMailManager("joedobbelaar@gmail.com", process.env.ANDCEMAILPASSWORD);
+const siteMailRouter = siteMailManager.getRouter();
+app.use("/site-mail", siteMailRouter);
+
+// Server site forms
+const siteFormManager = new SiteFormManager(process.env.ANDCFORMKEY);
+const siteFormRouter = siteFormManager.getRouter();
+app.use("/site-forms", siteFormRouter);
 
 // Server site models
 app.use("/site-models", siteModels);
