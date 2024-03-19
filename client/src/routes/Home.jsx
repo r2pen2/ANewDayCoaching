@@ -186,9 +186,9 @@ export default function Home() {
           <WLTextV2 size={24} editable={userCanEditText} firestoreId="contact-quote" />
           <Spacer y={0.5} />
           <form style={{backgroundColor: "white", }} className='shadow w-100 p-2 p-md-3 d-flex flex-column align-items-center gap-2'>
-            { !formSubmitted && <Input id="name" placeholder="Your Name" size='lg' aria-label='Your Name' className='kiwi w-100' /> }
-            { !formSubmitted && <Input id="email" placeholder="Your Email" size='lg' aria-label='Your Email' className='kiwi w-100' leftSection={<IconAt size={16} />} /> }
-            { !formSubmitted && <Textarea id="message" placeholder="Message" size='lg' aria-label='Message' className='kiwi w-100' /> }
+            <Input id="name" placeholder="Your Name" size='lg' hidden={formSubmitted} aria-label='Your Name' className='kiwi w-100' />
+            <Input id="email" placeholder="Your Email" size='lg' hidden={formSubmitted} aria-label='Your Email' className='kiwi w-100' leftSection={<IconAt size={16} />} />
+            <Textarea id="message" placeholder="Message" size='lg' hidden={formSubmitted} aria-label='Message' className='kiwi w-100' />
             { !formSubmitted && <button className='coaching-button' onClick={() => setRecaptchaModalOpen(true)}>Let's Connect</button> }
             { formSubmitted && <ThankYou /> }
           </form>
@@ -248,7 +248,7 @@ export default function Home() {
         className="d-flex flex-column w-100 align-items-center text-center py-3"
       >
         <Text>
-          One last thing:
+          Prove that you're human:
         </Text>
         <ReCAPTCHA
           onChange={handleCaptchaComplete}
