@@ -27,7 +27,7 @@ export default function Home() {
   const [sectionColors, setSectionColors] = React.useState({
     home: lightGreen,
     about: lightBlue,
-    contact: mint
+    contact: "#9da897"
   })
 
 
