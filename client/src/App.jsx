@@ -26,6 +26,7 @@ import {MailManager} from "./libraries/Web-Legos/api/mail.ts"
 
 export const ANDCMailManager = new MailManager();
 ANDCMailManager.addRecipientEmail("joedobbelaar@gmail.com");
+ANDCMailManager.addRecipientEmail("rachel.newday@gmail.com");
 
 /** Context to keep track of current user */
 export const CurrentSignInContext = createContext();

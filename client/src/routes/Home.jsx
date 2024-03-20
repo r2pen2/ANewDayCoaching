@@ -66,8 +66,8 @@ export default function Home() {
                   <WLTextV2 editable={userCanEditText} firestoreId="main-subtitle" />
                 </hgroup>
                 <div className="d-flex flex-row align-items-start justify-content-center justify-content-lg-start gap-2 pt-2">
-                  <button className="coaching-button">Book Now</button>
-                  <button className="coaching-button">My Apps</button>
+                  <button className="coaching-button">Learn More</button>
+                  {/* <button className="coaching-button">My Apps</button> */}
                 </div>
               </div>
             </div>
