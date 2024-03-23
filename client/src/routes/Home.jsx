@@ -47,17 +47,16 @@ export default function Home() {
     authenticationManager.getPermission(currentSignIn, "siteImages").then(p => setUserCanEditImages(p));
   }, [currentSignIn, authenticationManager]);
   
+  
+  const [mainHeaderLoaded, setMainHeaderLoaded] = useState(false);
+  const [subtitleLoaded, setSubtitleLoaded] = useState(false);
+  const splashLoaded = mainHeaderLoaded && subtitleLoaded;
+
   const Splash = () => {
 
     const Logo = () => (
       <img src={logo} alt="logo-full" style={{maxWidth: 500, maxHeight: 500, height:"100%", width: "100%", filter: "drop-shadow(0px 0px 5px rgba(0,0,0,0.5)"}}/>
     )
-
-
-    const [mainHeaderLoaded, setMainHeaderLoaded] = useState(false);
-    const [subtitleLoaded, setSubtitleLoaded] = useState(false);
-
-    const splashLoaded = mainHeaderLoaded && subtitleLoaded;
 
     return (
       <section id="home" className="d-flex flex-lg-row flex-column align-items-center justify-content-center w-100" style={{minHeight: 800, backgroundColor: sectionColors.home}}>
@@ -67,7 +66,7 @@ export default function Home() {
               <Logo />
               { !splashLoaded && <Loading type="points" size='lg' /> }
             </div>
-            <div className="col-lg-6 col-12 py-3 flex-column align-items-center justify-content-center loadable-transition" style={{width: splashLoaded ? null : 0, opacity: splashLoaded ? 1 : 0}}>
+            <div className="col-lg-6 col-12 py-3 flex-column align-items-center justify-content-center loadable-transition" style={{width: splashLoaded ? "100%" : 0, opacity: splashLoaded ? 1 : 0}}>
               <div className="d-flex flex-column gap-2" style={{maxWidth: 800}}>
                 <hgroup className='text-left' style={{padding: 0}}>
                   <WLHeaderV2 h1 editable={userCanEditText} firestoreId="main-header" setLoaded={setMainHeaderLoaded} />
