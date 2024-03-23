@@ -3,7 +3,7 @@ import { lightGreen, lightBlue, mint } from '../assets/style/colors'
 import "../assets/style/home.css";
 import logo from "../assets/images/logo.png";
 import rachel from "../assets/images/rachel.jpg";
-import glyph from "../assets/images/crystal.png";
+import glyph from "../assets/images/sun.png";
 import { IconAt } from '@tabler/icons-react';
 import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
 
