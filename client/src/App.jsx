@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 // Component Imports
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { createContext } from 'react';
+import { WLFooterSocials } from './libraries/Web-Legos/components/Footer.jsx';
 
 // API Imports
 import { firebaseConfig } from './api/firebase.ts'
@@ -17,7 +18,7 @@ import Home from './routes/Home.jsx';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import Navbar from './components/Navbar.jsx';
-import { WLHeader, WLHeaderV2 } from './libraries/Web-Legos/components/Text.jsx';
+import { WLHeader, WLHeaderV2, WLTextV2 } from './libraries/Web-Legos/components/Text.jsx';
 import { Link, Text } from '@nextui-org/react';
 
 import  {FooterAuthButton} from "./libraries/Web-Legos/components/Auth.jsx"
@@ -73,6 +74,10 @@ export function App(props) {
     )
   }
 
+  const linkedinLink = "https://www.linkedin.com/in/rachel-dayanim-09aa2443/";
+  const facebookLink = "https://www.facebook.com/anewdaycoaching";
+  const instagramLink = "https://www.instagram.com/anewdaycoaching/";
+
   // Return the app
   return (
     <div className="App d-flex flex-column align-items-center w-100" data-testid="app">
@@ -88,14 +93,20 @@ export function App(props) {
               </Routes>
               <footer className="pt-5 flex-column align-items-center justify-content-center">
                 <div className="d-flex flex-column align-items-center justify-content-center">
-                  <WLHeaderV2 size="$4xl" align="center">A New Day Coaching</WLHeaderV2>
+                  <WLHeaderV2 size="$4xl" align="center">A New Day Coaching</WLHeaderV2>          
+                  <WLTextV2 firestoreId="contact-name" />
                   <Link href="mailto:rachel@anewdaycoaching.com">
                     <Text css={{textDecoration:"underline"}}>rachel@anewdaycoaching.com</Text>
                   </Link>
                   <Link href="callto:2027982343">
-                    <Text css={{textDecoration:"underline"}}>(202) 798-2343</Text>
+                    <Text css={{textDecoration:"underline"}}>(202) 798-ADHD</Text>
                   </Link>
                 </div>
+                <WLFooterSocials lineBottom>
+                  <WLFooterSocials.Button platformKey="linkedin" href={linkedinLink} />
+                  <WLFooterSocials.Button platformKey="facebook" href={facebookLink} />
+                  <WLFooterSocials.Button platformKey="instagram" href={instagramLink} />
+                </WLFooterSocials>
                 <div className="d-lg-flex w-100 d-none flex-row gap-2 align-items-end justify-content-around">
                   <Link href="https://www.joed.dev">
                     <Text css={{textDecoration:"underline"}}>Web Designer: Joe Dobbelaar</Text>

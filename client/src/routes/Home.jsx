@@ -7,9 +7,11 @@ import glyph from "../assets/images/crystal.png";
 import { IconAt } from '@tabler/icons-react';
 import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
 
+import Marquee from 'react-fast-marquee'
+
 import {WLTextV2, WLHeaderV2 } from "../libraries/Web-Legos/components/Text";
 import {WLImageV2} from "../libraries/Web-Legos/components/Images.jsx"
-import { Link, Modal, Spacer, Text } from '@nextui-org/react';
+import { Modal, Spacer, Text } from '@nextui-org/react';
 
 import {WaveBottom, WaveTop} from "../libraries/Web-Legos/components/Waves"
 
@@ -134,6 +136,9 @@ export default function Home() {
               <Accordion.Control style={{fontSize:"24px"}}>Coaching</Accordion.Control>
               <Accordion.Panel>
                 <WLTextV2 align="left" editable={userCanEditText} firestoreId="services-coaching" />
+                <div className="w-100 d-flex justify-content-center">
+                  <button className="coaching-button">Sign Up</button>
+                </div>
               </Accordion.Panel>
             </Accordion.Item>
             <Accordion.Item key="workshops" value="workshops">
@@ -153,10 +158,13 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+                <div className="w-100 d-flex justify-content-center">
+                  <button className="coaching-button">Sign Up</button>
+                </div>
               </Accordion.Panel>
             </Accordion.Item>
             <Accordion.Item key="courses" value="courses">
-              <Accordion.Control style={{fontSize:"24px"}}>Courses (Coming Soon!)</Accordion.Control>
+              <Accordion.Control style={{fontSize:"24px"}}>Courses</Accordion.Control>
               <Accordion.Panel>
                 <WLTextV2 align="left" editable={userCanEditText} firestoreId="services-courses" />
               </Accordion.Panel>
@@ -172,11 +180,23 @@ export default function Home() {
     const ThankYou = () => (
       <div className="d-flex flex-column align-items-center justify-content-center">
         <MarkEmailReadOutlinedIcon style={{fontSize: 64}} />
-        <Text>
-          Thanks for reaching out! I'll be in contact with you shortly.
-        </Text>
+        <WLTextV2 firestoreId="thank-you" editable={userCanEditText} />
       </div>
     )
+
+    const tickerItems = ["Organize", "Manage Your Time", "Plan", "Prioritize", "Initiate", "Maintain Focus"]
+
+    const FormContent = () => {
+      if (formSubmitted) {
+        return <ThankYou />
+      }
+      return [
+        <Input key="name-input" id="name" placeholder="Your Name" size='lg' aria-label='Your Name' className='kiwi w-100' />,
+        <Input key="email-input" id="email" placeholder="Your Email" size='lg' aria-label='Your Email' className='kiwi w-100' leftSection={<IconAt size={16} />} />,
+        <Textarea key="message-input" id="message" placeholder="Message" size='lg' aria-label='Message' className='kiwi w-100' />,
+        <button key="submit-button" className='coaching-button' onClick={() => setRecaptchaModalOpen(true)}>Let's Connect</button>
+      ]
+    }
 
     return (
       <section id="contact" className="d-flex flex-column align-items-center justify-content-center w-100 pb-5" style={{backgroundColor: sectionColors.contact, position: "relative"}}>
@@ -186,43 +206,44 @@ export default function Home() {
           <WLTextV2 size={24} editable={userCanEditText} firestoreId="contact-quote" />
           <Spacer y={0.5} />
           <form style={{backgroundColor: "white", }} className='shadow w-100 p-2 p-md-3 d-flex flex-column align-items-center gap-2'>
-            <Input id="name" placeholder="Your Name" size='lg' hidden={formSubmitted} aria-label='Your Name' className='kiwi w-100' />
-            <Input id="email" placeholder="Your Email" size='lg' hidden={formSubmitted} aria-label='Your Email' className='kiwi w-100' leftSection={<IconAt size={16} />} />
-            <Textarea id="message" placeholder="Message" size='lg' hidden={formSubmitted} aria-label='Message' className='kiwi w-100' />
-            { !formSubmitted && <button className='coaching-button' onClick={() => setRecaptchaModalOpen(true)}>Let's Connect</button> }
-            { formSubmitted && <ThankYou /> }
+            <FormContent />
           </form>
           <Spacer y={1} />
-          <WLTextV2 editable={userCanEditText} firestoreId="contact-ticker" />
-          <WLTextV2 editable={userCanEditText} firestoreId="contact-name" />
-          <Link href="callto:2027982343">
-            (202) 798-2343
-          </Link>
+        </div>
+        <div className="w-100 pt-4">
+          <Marquee autoFill>
+            {tickerItems.map((tickerItem, index) => (<Text className='px-5' size="$2xl" key={index}>{tickerItem}</Text>))}
+          </Marquee>
         </div>
       </section>
     )
   }
 
   const CaptchaModal = () => {
-
     
+    const name = document.getElementById("name")?.value;
+    const email = document.getElementById("email")?.value;
+    const message = document.getElementById("message")?.value;
+
     function sendForm() {
       function getEmailBody() {
-        const body = `Name: ${document.getElementById("name").value}\n` +
-          `Email: ${document.getElementById("email").value}\n` +
-          `Message: ${document.getElementById("message").value}`;
+        const body = `Name: ${name}\n` +
+          `Email: ${email}\n` +
+          `Message: ${message}`;
         return body;
       }
 
+      console.log(getEmailBody());
+
       ANDCMailManager.sendMail(
-        `New ANewDayCoaching Contact Form Submission from ${document.getElementById("name").value}`,
+        `New ANewDayCoaching Contact Form Submission from ${name}`,
         getEmailBody()
       );
 
       const res = new FormResponse();
-      res.content["Name"] = document.getElementById("name").value;
-      res.content["Email"] = document.getElementById("email").value;
-      res.content["Message"] = document.getElementById("message").value;
+      res.content["Name"] = name;
+      res.content["Email"] = email;
+      res.content["Message"] = message;
       res.shortStrings.formId = "contact";
       res.shortStrings.formTitle = "Contact";
       res.sendFormData();
@@ -263,6 +284,6 @@ export default function Home() {
     <About2 />,
     <WhyCoaching2 />,
     <CaptchaModal />,
-    <Contact />
+    <Contact />,
   ]
 }
