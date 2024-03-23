@@ -27,3 +27,7 @@ nav.custom {
   padding-right: 2rem;
   justify-content: flex-end;
 }
+
+.loadable-transition {
+  transition: all 1s ease;
+}

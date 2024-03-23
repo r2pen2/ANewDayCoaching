@@ -64,7 +64,3 @@ p {
   color: #54962b;
   font-size: x-large !important;
 }
-
-.loadable-transition {
-  transition: all 0.75s ease;
-}
