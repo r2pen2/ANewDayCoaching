@@ -47,17 +47,17 @@ export default function Home() {
     authenticationManager.getPermission(currentSignIn, "siteImages").then(p => setUserCanEditImages(p));
   }, [currentSignIn, authenticationManager]);
   
+
+  const [mainHeaderLoaded, setMainHeaderLoaded] = useState(false);
+  const [subtitleLoaded, setSubtitleLoaded] = useState(false);
+
+  const splashLoaded = mainHeaderLoaded && subtitleLoaded;
+
   const Splash = () => {
 
     const Logo = () => (
       <img src={logo} alt="logo-full" style={{maxWidth: 500, maxHeight: 500, height:"100%", width: "100%", filter: "drop-shadow(0px 0px 5px rgba(0,0,0,0.5)"}}/>
     )
-
-
-    const [mainHeaderLoaded, setMainHeaderLoaded] = useState(false);
-    const [subtitleLoaded, setSubtitleLoaded] = useState(false);
-
-    const loaded = mainHeaderLoaded && subtitleLoaded;
 
     return (
       <section id="home" className="d-flex flex-lg-row flex-column align-items-center justify-content-center w-100" style={{minHeight: 800, backgroundColor: sectionColors.home}}>
@@ -65,9 +65,9 @@ export default function Home() {
           <div className="row px-2 py-5 d-flex flex-row align-items-center justify-content-center">
             <div className="col-xxl-5 col-lg-6 col-12 d-flex flex-column align-items-center justify-content-center">
               <Logo />
-              { !loaded && <Loading type="points" size='lg' /> }
+              { !splashLoaded && <Loading type="points" size='lg' /> }
             </div>
-            <div className="col-lg-6 col-12 py-3 flex-column align-items-center justify-content-center loadable-transition" style={{width: loaded ? null : 0, opacity: loaded ? 1 : 0}}>
+            <div className="col-lg-6 col-12 py-3 flex-column align-items-center justify-content-center loadable-transition" style={{width: splashLoaded ? null : 0, height: splashLoaded ? null : 0, opacity: splashLoaded ? 1 : 0}}>
               <div className="d-flex flex-column gap-2" style={{maxWidth: 800}}>
                 <hgroup className='text-left' style={{padding: 0}}>
                   <WLHeaderV2 h1 editable={userCanEditText} firestoreId="main-header" setLoaded={setMainHeaderLoaded} />
@@ -87,6 +87,9 @@ export default function Home() {
   }
 
   const About2 = () => {
+
+    if (!splashLoaded) { return; }
+
     return (
       <section id="about" className="w-100 d-flex flex-column align-items-center pb-5" style={{backgroundColor: sectionColors.about, position: "relative"}}>
         <WaveBottom color={sectionColors.home}/>
@@ -104,6 +107,8 @@ export default function Home() {
   }
 
   const WhyCoaching2 = () => {
+    
+    if (!splashLoaded) { return; }
     
     const WhyPaper = ({id}) => (
       <div className="p-2 col-6 col-md-4 col-xl-3">
@@ -183,6 +188,8 @@ export default function Home() {
   }
 
   const Contact = () => {
+    
+    if (!splashLoaded) { return; }
     
     const ThankYou = () => (
       <div className="d-flex flex-column align-items-center justify-content-center">
