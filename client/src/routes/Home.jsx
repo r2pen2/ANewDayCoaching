@@ -54,9 +54,9 @@ export default function Home() {
     
     const Headers = () => (
       <hgroup className='text-left' style={{padding: 0}}>
-        <WLHeaderV2 showSpinner spinnerStyle="points" h1 editable={userCanEditText} firestoreId="main-header" />
+        <WLHeaderV2 showSpinner spinnerStyle="points" spinnerCss={{marginBottom: "1rem"}} h1 editable={userCanEditText} firestoreId="main-header" />
         <div className="coaching-line" />
-        <WLTextV2 showSpinner spinnerStyle="points" editable={userCanEditText} firestoreId="main-subtitle" />
+        <WLTextV2 editable={userCanEditText} firestoreId="main-subtitle" />
       </hgroup>
     )
 
