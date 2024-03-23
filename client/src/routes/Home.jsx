@@ -127,7 +127,7 @@ export default function Home() {
           </div>
         </section>
         <Spacer y={1} />
-        <img src={glyph} alt="glyph" style={{minWidth: 100, maxWidth: 200}} data-testid="wl-glyph-section-glyph" />
+        <img src={glyph} alt="glyph" style={{minWidth: 150, maxWidth: 300}} data-testid="shadow wl-glyph-section-glyph" />
         <section id="services" className='w-100 d-flex flex-column align-items-center py-5 px-2'>
           <WLHeaderV2 editable={userCanEditText} firestoreId="services-header" />
           <div className="coaching-line" style={{maxWidth: 1000}} />
