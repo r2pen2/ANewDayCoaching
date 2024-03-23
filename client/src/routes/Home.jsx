@@ -49,11 +49,6 @@ export default function Home() {
 
   
   const [splashLoaded, setSplashLoaded] = useState(false);
-  useEffect(() => {
-    const timeout = setTimeout(() => setSplashLoaded(true), 500);
-    return () => clearTimeout(timeout);
-  }, []);
-  
 
   const Splash = () => {
 
@@ -72,7 +67,7 @@ export default function Home() {
             <div className="col-lg-6 col-12 py-3 flex-column align-items-center justify-content-center loadable-transition" style={{width: splashLoaded ? null : 0, opacity: splashLoaded ? 1 : 0}}>
               <div className="d-flex flex-column gap-2" style={{maxWidth: 800}}>
                 <hgroup className='text-left' style={{padding: 0}}>
-                  <WLHeaderV2 h1 editable={userCanEditText} firestoreId="main-header" style={{height: splashLoaded ? null : 0}} />
+                  <WLHeaderV2 h1 editable={userCanEditText} firestoreId="main-header" setLoaded={setSplashLoaded} style={{height: splashLoaded ? null : 0}} />
                   <div className="coaching-line" />
                   <WLTextV2 editable={userCanEditText} firestoreId="main-subtitle" style={{height: splashLoaded ? null : 0}} />
                 </hgroup>
