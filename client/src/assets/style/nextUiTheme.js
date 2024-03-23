@@ -10,7 +10,7 @@ export const nextUiTheme = createTheme({
       primaryLightHover: "$purple300",
       primaryLightActive: "$purple400",
       primaryLightContrast: "$purple600",
-      primary: "$purple600",
+      primary: "#647659",
       primaryBorder: "$purple500",
       primaryBorderHover: "$purple600",
       primarySolidHover: "$purple700",

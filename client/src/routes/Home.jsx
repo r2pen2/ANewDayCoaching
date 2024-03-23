@@ -11,7 +11,7 @@ import Marquee from 'react-fast-marquee'
 
 import {WLTextV2, WLHeaderV2 } from "../libraries/Web-Legos/components/Text";
 import {WLImageV2} from "../libraries/Web-Legos/components/Images.jsx"
-import { Modal, Spacer, Text } from '@nextui-org/react';
+import { Loading, Modal, Spacer, Text } from '@nextui-org/react';
 
 import {WaveBottom, WaveTop} from "../libraries/Web-Legos/components/Waves"
 
@@ -53,19 +53,26 @@ export default function Home() {
       <img src={logo} alt="logo-full" style={{maxWidth: 500, maxHeight: 500, height:"100%", width: "100%", filter: "drop-shadow(0px 0px 5px rgba(0,0,0,0.5)"}}/>
     )
 
+
+    const [mainHeaderLoaded, setMainHeaderLoaded] = useState(false);
+    const [subtitleLoaded, setSubtitleLoaded] = useState(false);
+
+    const loaded = mainHeaderLoaded && subtitleLoaded;
+
     return (
       <section id="home" className="d-flex flex-lg-row flex-column align-items-center justify-content-center w-100" style={{minHeight: 800, backgroundColor: sectionColors.home}}>
         <div className="container">
           <div className="row px-2 py-5 d-flex flex-row align-items-center justify-content-center">
             <div className="col-xxl-5 col-lg-6 col-12 d-flex flex-column align-items-center justify-content-center">
               <Logo />
+              { !loaded && <Loading type="points" size='lg' /> }
             </div>
-            <div className="col-lg-6 col-12 py-3 flex-column align-items-center justify-content-center">
+            <div className="col-lg-6 col-12 py-3 flex-column align-items-center justify-content-center loadable-transition" style={{width: loaded ? null : 0, opacity: loaded ? 1 : 0}}>
               <div className="d-flex flex-column gap-2" style={{maxWidth: 800}}>
                 <hgroup className='text-left' style={{padding: 0}}>
-                  <WLHeaderV2 h1 editable={userCanEditText} firestoreId="main-header" />
+                  <WLHeaderV2 h1 editable={userCanEditText} firestoreId="main-header" setLoaded={setMainHeaderLoaded} />
                   <div className="coaching-line" />
-                  <WLTextV2 editable={userCanEditText} firestoreId="main-subtitle" />
+                  <WLTextV2 editable={userCanEditText} firestoreId="main-subtitle" setLoaded={setSubtitleLoaded} />
                 </hgroup>
                 <div className="d-flex flex-row align-items-start justify-content-center justify-content-lg-start gap-2 pt-2">
                   <button className="coaching-button">Learn More</button>
@@ -127,7 +134,7 @@ export default function Home() {
           </div>
         </section>
         <Spacer y={1} />
-        <img src={glyph} alt="glyph" style={{minWidth: 150, maxWidth: 300}} data-testid="shadow wl-glyph-section-glyph" />
+        <img src={glyph} alt="glyph" style={{minWidth: 150, maxWidth: 300}} data-testid="wl-glyph-section-glyph" />
         <section id="services" className='w-100 d-flex flex-column align-items-center py-5 px-2'>
           <WLHeaderV2 editable={userCanEditText} firestoreId="services-header" />
           <div className="coaching-line" style={{maxWidth: 1000}} />
