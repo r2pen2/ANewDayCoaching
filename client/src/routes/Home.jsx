@@ -46,6 +46,13 @@ export default function Home() {
     authenticationManager.getPermission(currentSignIn, "siteText").then(p => setUserCanEditText(p));
     authenticationManager.getPermission(currentSignIn, "siteImages").then(p => setUserCanEditImages(p));
   }, [currentSignIn, authenticationManager]);
+
+  
+  const [splashLoaded, setSplashLoaded] = useState(false);
+  useEffect(() => {
+    const timeout = setTimeout(() => setSplashLoaded(true), 500);
+    return () => clearTimeout(timeout);
+  }, []);
   
 
   const Splash = () => {
@@ -53,12 +60,6 @@ export default function Home() {
     const Logo = () => (
       <img src={logo} alt="logo-full" style={{maxWidth: 500, maxHeight: 500, height:"100%", width: "100%", filter: "drop-shadow(0px 0px 5px rgba(0,0,0,0.5)"}}/>
     )
-
-    const [splashLoaded, setSplashLoaded] = useState(false);
-    useEffect(() => {
-      const timeout = setTimeout(() => setSplashLoaded(true), 500);
-      return () => clearTimeout(timeout);
-    }, []);
 
     return (
       <section id="home" className="d-flex flex-lg-row flex-column align-items-center justify-content-center w-100" style={{minHeight: 800, backgroundColor: sectionColors.home}}>
