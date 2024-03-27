@@ -6,6 +6,7 @@ import rachel from "../assets/images/rachel.jpg";
 import glyph from "../assets/images/sun.png";
 import { IconAt } from '@tabler/icons-react';
 import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
+import ReactCardFlip from 'react-card-flip';
 
 import Marquee from 'react-fast-marquee'
 
@@ -101,13 +102,23 @@ export default function Home() {
 
   const WhyCoaching2 = () => {
     
-    const WhyPaper = ({id}) => (
-      <div className="p-2 col-6 col-md-4 col-xl-3">
-        <Paper shadow="sm" radius="xs" withBorder p="xl" className='why-paper h-100 d-flex flex-column align-items-center justify-content-center'>
-          <WLTextV2 size={20} firestoreId={id} editable={userCanEditText} />
-        </Paper>
-      </div>
-    )
+    const WhyPaper = ({id}) => {
+    
+      const [isFlipped, setIsFlipped] = useState(false);
+      
+      return (
+        <div className="p-2 col-6 col-md-4 col-xl-3 c-pointer">
+          <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+            <Paper style={{minHeight: 150}} shadow="sm" radius="xs" withBorder p="xl" onClick={() => setIsFlipped(true)} className='why-paper h-100 d-flex flex-column align-items-center justify-content-center'>
+              <WLTextV2 size={20} firestoreId={id} editable={userCanEditText} />
+            </Paper>
+            <Paper style={{minHeight: 150}} shadow="sm" radius="xs" withBorder p="xl" onClick={() => setIsFlipped(false)} className='why-paper h-100 d-flex flex-column align-items-center justify-content-center'>
+              <WLTextV2 size={20} editable={userCanEditText}>Back</WLTextV2>
+            </Paper>
+          </ReactCardFlip>
+        </div>
+      )
+    }
 
     return (
       <section className="w-100 d-flex flex-column align-items-center justify-content-center" id="why-coaching" style={{zIndex: 2, position: "relative"}}>
