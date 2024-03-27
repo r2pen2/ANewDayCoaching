@@ -10,9 +10,9 @@ import ReactCardFlip from 'react-card-flip';
 
 import Marquee from 'react-fast-marquee'
 
-import {WLTextV2, WLHeaderV2 } from "../libraries/Web-Legos/components/Text";
-import {WLImageV2} from "../libraries/Web-Legos/components/Images.jsx"
-import { Loading, Modal, Spacer, Text } from '@nextui-org/react';
+import { WLTextV2, WLHeaderV2 } from "../libraries/Web-Legos/components/Text";
+import { WLImageV2 } from "../libraries/Web-Legos/components/Images.jsx"
+import { Modal, Spacer, Text } from '@nextui-org/react';
 
 import {WaveBottom, WaveTop} from "../libraries/Web-Legos/components/Waves"
 
@@ -72,7 +72,7 @@ export default function Home() {
               <div className="d-flex flex-column gap-2" style={{maxWidth: 800}}>
                 <Headers />
                 <div className="d-flex flex-row align-items-start justify-content-center justify-content-lg-start gap-2 pt-2">
-                  <button className="coaching-button">Learn More</button>
+                  <button className="coaching-button" onClick={() => window.location = "#why-coaching"}>Learn More</button>
                   {/* <button className="coaching-button">My Apps</button> */}
                 </div>
               </div>
@@ -126,7 +126,7 @@ export default function Home() {
         <section className="d-flex flex-column w-100 align-items-center justify-content-center px-2 px-lg-5">
           <WLHeaderV2 h1 editable={userCanEditText} firestoreId="why-coaching-header"/>
           <div className="container d-flex flex-column align-items-center">
-            <div className="coaching-line"/>
+            <div className="coaching-line mb-5"/>
             <WLTextV2 size={24} editable={userCanEditText} firestoreId="why-coaching-subtitle" />
             <div className="row w-100 d-flex flex-row justify-content-center" >
               <WhyPaper id="card-navigate" />
@@ -142,7 +142,7 @@ export default function Home() {
         </section>
         <Spacer y={1} />
         <img src={glyph} alt="glyph" style={{minWidth: 150, maxWidth: 300}} data-testid="wl-glyph-section-glyph" />
-        <section id="services" className='w-100 d-flex flex-column align-items-center py-5 px-2'>
+        <section id="services" className='w-100 d-flex flex-column align-items-center pb-5 px-2'>
           <WLHeaderV2 editable={userCanEditText} firestoreId="services-header" />
           <div className="coaching-line" style={{maxWidth: 1000}} />
           <Accordion variant='contained' style={{maxWidth: 1000, width: "100%"}}>
@@ -213,7 +213,7 @@ export default function Home() {
     }
 
     return (
-      <section id="contact" className="d-flex flex-column align-items-center justify-content-center w-100 pb-5" style={{backgroundColor: sectionColors.contact, position: "relative"}}>
+      <section id="contact" className="d-flex flex-column align-items-center justify-content-center w-100" style={{backgroundColor: sectionColors.contact, position: "relative"}}>
       <WaveTop flipY color={"white"} />
         <Spacer y={2} />
         <div style={{maxWidth: 1000}} className='mt-3 gap-2 px-2 px-md-3 w-100 d-flex flex-column align-items-center'>
@@ -224,9 +224,9 @@ export default function Home() {
           </form>
           <Spacer y={1} />
         </div>
-        <div className="w-100 pt-4">
-          <Marquee autoFill>
-            {tickerItems.map((tickerItem, index) => (<Text className='px-5' size="$2xl" key={index}>{tickerItem}</Text>))}
+        <div className="w-100 pt-4 mb-0">
+          <Marquee autoFill style={{marginBottom: "-1.6rem"}}>
+            {tickerItems.map((tickerItem, index) => (<Text className='px-5 mb-0 raleway' size="$5xl" style={{textTransform: "uppercase", userSelect: "none"}} key={index}>{tickerItem}</Text>))}
           </Marquee>
         </div>
       </section>

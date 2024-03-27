@@ -64,3 +64,10 @@ p {
   color: #54962b;
   font-size: x-large !important;
 }
+
+.raleway {
+  color: white;
+  font-family: "Raleway", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 500;
+}

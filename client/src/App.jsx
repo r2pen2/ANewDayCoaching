@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { createContext } from 'react';
 import { WLFooterSocials } from './libraries/Web-Legos/components/Footer.jsx';
+import logoTransparent from "./assets/images/logoTransparent.png"
 
 // API Imports
 import { firebaseConfig } from './api/firebase.ts'
@@ -19,7 +20,7 @@ import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import Navbar from './components/Navbar.jsx';
 import { WLHeader, WLHeaderV2, WLTextV2 } from './libraries/Web-Legos/components/Text.jsx';
-import { Link, Text } from '@nextui-org/react';
+import { Link, Spacer, Text } from '@nextui-org/react';
 
 import  {FooterAuthButton} from "./libraries/Web-Legos/components/Auth.jsx"
 
@@ -93,7 +94,14 @@ export function App(props) {
               </Routes>
               <footer className="pt-5 flex-column align-items-center justify-content-center">
                 <div className="d-flex flex-column align-items-center justify-content-center">
-                  <WLHeaderV2 size="$4xl" align="center">A New Day Coaching</WLHeaderV2>          
+                  {/* <WLHeaderV2 size="$4xl" align="center">A New Day Coaching</WLHeaderV2>           */}
+                  <img src={logoTransparent} alt="A New Day Coaching" style={{width: "400px"}} />
+                <WLFooterSocials lineBottom>
+                  <WLFooterSocials.Button color="#647659" size="42" platformKey="linkedin" href={linkedinLink} />
+                  <WLFooterSocials.Button color="#647659" size="42" platformKey="facebook" href={facebookLink} />
+                  <WLFooterSocials.Button color="#647659" size="42" platformKey="instagram" href={instagramLink} />
+                </WLFooterSocials>
+                <Spacer y={1} />
                   <WLTextV2 firestoreId="contact-name" />
                   <Link href="mailto:rachel@anewdaycoaching.com">
                     <Text css={{textDecoration:"underline"}}>rachel@anewdaycoaching.com</Text>
@@ -102,11 +110,6 @@ export function App(props) {
                     <Text css={{textDecoration:"underline"}}>(202) 798-ADHD</Text>
                   </Link>
                 </div>
-                <WLFooterSocials lineBottom>
-                  <WLFooterSocials.Button platformKey="linkedin" href={linkedinLink} />
-                  <WLFooterSocials.Button platformKey="facebook" href={facebookLink} />
-                  <WLFooterSocials.Button platformKey="instagram" href={instagramLink} />
-                </WLFooterSocials>
                 <div className="d-lg-flex w-100 d-none flex-row gap-2 align-items-end justify-content-around">
                   <Link href="https://www.joed.dev">
                     <Text css={{textDecoration:"underline"}}>Web Designer: Joe Dobbelaar</Text>

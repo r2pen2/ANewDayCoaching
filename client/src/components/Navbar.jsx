@@ -32,11 +32,6 @@ export default function Navbar() {
           Services
         </Text>
       </Link>
-      <Link href="#resources">
-        <Text size="$lg" color="#291250" style={{margin: 0}}>
-          Resources
-        </Text>
-      </Link>
       <Link href="#contact">
         <Text size="$lg" color="#291250" style={{margin: 0}}>
           Contact
@@ -94,20 +89,6 @@ export default function Navbar() {
             href="#services"
           >
             Services
-          </Link>
-        </NextUINavbar.CollapseItem>
-        <NextUINavbar.CollapseItem
-        >
-          <Link
-          onClick={handleSideMenu}
-            color="inherit"
-            css={{
-              minWidth: "100%",
-              paddingLeft: "1rem"
-            }}
-            href="#resources"
-          >
-            Resources
           </Link>
         </NextUINavbar.CollapseItem>
         <NextUINavbar.CollapseItem
