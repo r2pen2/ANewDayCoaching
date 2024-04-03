@@ -135,8 +135,6 @@ export default function Home() {
               <WhyPaper id="card-overcome" />
               <WhyPaper id="card-accountable" />
               <WhyPaper id="card-organized" />
-              <WhyPaper id="card-create" />
-              <WhyPaper id="card-achieve" />
             </div>
           </div>
         </section>
