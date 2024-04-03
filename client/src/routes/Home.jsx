@@ -107,13 +107,13 @@ export default function Home() {
       const [isFlipped, setIsFlipped] = useState(false);
       
       return (
-        <div className="p-2 col-6 col-md-4 col-xl-3 c-pointer">
+        <div className="p-2 col-6 col-md-4 c-pointer">
           <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
             <Paper style={{minHeight: 150}} shadow="sm" radius="xs" withBorder p="xl" onClick={() => setIsFlipped(true)} className='why-paper h-100 d-flex flex-column align-items-center justify-content-center'>
               <WLTextV2 size={20} firestoreId={id} editable={userCanEditText} />
             </Paper>
             <Paper style={{minHeight: 150}} shadow="sm" radius="xs" withBorder p="xl" onClick={() => setIsFlipped(false)} className='why-paper h-100 d-flex flex-column align-items-center justify-content-center'>
-              <WLTextV2 size={20} editable={userCanEditText}>Back</WLTextV2>
+              <WLTextV2 size={20} editable={true}>Back</WLTextV2>
             </Paper>
           </ReactCardFlip>
         </div>
