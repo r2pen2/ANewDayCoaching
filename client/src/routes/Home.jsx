@@ -113,7 +113,7 @@ export default function Home() {
               <WLTextV2 size={20} firestoreId={id} editable={userCanEditText} />
             </Paper>
             <Paper style={{minHeight: 150}} shadow="sm" radius="xs" withBorder p="xl" onClick={() => setIsFlipped(false)} className='why-paper h-100 d-flex flex-column align-items-center justify-content-center'>
-              <WLTextV2 size={20} editable={true}>Back</WLTextV2>
+              <WLTextV2 size={20} editable={userCanEditText} firestoreId={`${id}-back`} />
             </Paper>
           </ReactCardFlip>
         </div>
