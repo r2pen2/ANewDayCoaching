@@ -271,24 +271,26 @@ export default function Home() {
     setRecaptchaModalOpen(false);
   }
 
-    return(<Modal
-      blur
-      open={recaptchaModalOpen}
-      onClose={() => setRecaptchaModalOpen(false)}
-      closeButton
-    >
-      <Modal.Body      
-        className="d-flex flex-column w-100 align-items-center text-center py-3"
+    return (
+      <Modal
+        blur
+        open={recaptchaModalOpen}
+        onClose={() => setRecaptchaModalOpen(false)}
+        closeButton
       >
-        <Text>
-          Prove that you're human:
-        </Text>
-        <ReCAPTCHA
-          onChange={handleCaptchaComplete}
-          sitekey="6LfuCIwmAAAAAOx25tZVJk5Jrw4hjjYWBPHU4IhU"
-        />
-      </Modal.Body>
-    </Modal>)
+        <Modal.Body      
+          className="d-flex flex-column w-100 align-items-center text-center py-3"
+        >
+          <Text>
+            Prove that you're human:
+          </Text>
+          <ReCAPTCHA
+            onChange={handleCaptchaComplete}
+            sitekey="6LfuCIwmAAAAAOx25tZVJk5Jrw4hjjYWBPHU4IhU"
+          />
+        </Modal.Body>
+      </Modal>
+    )
   }
   
   return [
