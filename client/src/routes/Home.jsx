@@ -149,7 +149,7 @@ export default function Home() {
               <Accordion.Panel>
                 <WLTextV2 align="left" editable={userCanEditText} firestoreId="services-coaching" />
                 <div className="w-100 d-flex justify-content-center">
-                  <button className="coaching-button">Sign Up</button>
+                  <button className="coaching-button" onClick={() => {document.getElementById("message").value = "Hi, I'd like to sign up for coaching."; window.location = "#contact";}}>Sign Up</button>
                 </div>
               </Accordion.Panel>
             </Accordion.Item>
@@ -171,7 +171,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="w-100 d-flex justify-content-center">
-                  <button className="coaching-button">Sign Up</button>
+                  <button className="coaching-button" onClick={() => {document.getElementById("message").value = "Hi, I'd like to sign up for workshops and training."; window.location = "#contact";}}>Sign Up</button>
                 </div>
               </Accordion.Panel>
             </Accordion.Item>
@@ -205,8 +205,8 @@ export default function Home() {
       return [
         <Input key="name-input" id="name" placeholder="Your Name" size='lg' aria-label='Your Name' className='kiwi w-100' />,
         <Input key="email-input" id="email" placeholder="Your Email" size='lg' aria-label='Your Email' className='kiwi w-100' leftSection={<IconAt size={16} />} />,
-        <Textarea key="message-input" id="message" placeholder="Message" size='lg' aria-label='Message' className='kiwi w-100' />,
-        <button key="submit-button" className='coaching-button' onClick={() => setRecaptchaModalOpen(true)}>Let's Connect</button>
+        <Textarea key="message-input" id="message" placeholder="How can I help?" size='lg' aria-label='Message' className='kiwi w-100' />,
+        <button key="submit-button" className='coaching-button' onClick={() => {setRecaptchaModalOpen(true)}}>Let's Connect</button>
       ]
     }
 
