@@ -71,3 +71,20 @@ p {
   font-optical-sizing: auto;
   font-weight: 500;
 }
+
+.animation-stick {
+  height: 5px;
+  background-color: #647659;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+@keyframes stick {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}

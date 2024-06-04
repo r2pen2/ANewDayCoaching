@@ -102,18 +102,68 @@ export default function Home() {
 
   const WhyCoaching2 = () => {
     
-    const WhyPaper = ({id}) => {
+    const WhyPaper = ({id, index}) => {
     
       const [isFlipped, setIsFlipped] = useState(false);
+      const [animationActive, setAnimationActive] = useState(false);
+      const [animationReset, setAnimationReset] = useState(false);
+      
+      useEffect(() => {
+        setAnimationActive(false);
+        setAnimationActive(true);
+      }, [isFlipped])
+
+      function resetAnimation() {
+        const front = document.getElementById(`stick-${id}-front`)
+        const back = document.getElementById(`stick-${id}-back`)
+        front.style.animation = "none";
+        back.style.animation = "none";
+        void front.offsetHeight;
+        void back.offsetHeight;
+        front.style.animation = "stick 18s ease-out infinite";
+        back.style.animation = "stick 18s ease-out infinite";
+        front.style.animationDelay = `0s`;
+        back.style.animationDelay = `0s`;
+        setAnimationReset(true);
+      }
+
+      const flipTimer = setTimeout(() => {
+        handleFlip(!isFlipped);
+      }, (18000 + (animationReset ? 0 : id * 1000)))
+
+      function handleFlip(flip) {
+        setIsFlipped(flip);
+        clearTimeout(flipTimer);
+        resetAnimation();
+      }
+
       
       return (
         <div className="p-2 col-6 col-md-4 c-pointer">
           <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-            <Paper style={{minHeight: 150}} shadow="sm" radius="xs" withBorder p="xl" onClick={() => setIsFlipped(true)} className='why-paper h-100 d-flex flex-column align-items-center justify-content-center'>
+            <Paper
+              style={{minHeight: 150}}
+              shadow="sm"
+              radius="xs"
+              withBorder
+              p="xl"
+              onClick={() => handleFlip(true)}
+              className={`why-paper h-100 d-flex flex-column align-items-center justify-content-center ${!isFlipped && animationActive ? "animation-active" : ""}`}
+            >
               <WLTextV2 size={20} firestoreId={id} editable={userCanEditText} />
+              <div className="animation-stick" id={`stick-${id}-front`} style={{animation: "stick 18s ease-out infinite", animationDelay: `${index}s`}}></div>
             </Paper>
-            <Paper style={{minHeight: 150}} shadow="sm" radius="xs" withBorder p="xl" onClick={() => setIsFlipped(false)} className='why-paper h-100 d-flex flex-column align-items-center justify-content-center'>
+            <Paper
+              style={{minHeight: 150}}
+              shadow="sm"
+              radius="xs"
+              withBorder
+              p="xl"
+              onClick={() => handleFlip(false)}
+              className={`why-paper h-100 d-flex flex-column align-items-center justify-content-center ${isFlipped && animationActive ? "animation-active" : ""}`}
+            >
               <WLTextV2 size={20} editable={userCanEditText} firestoreId={`${id}-back`} />
+              <div className="animation-stick" id={`stick-${id}-back`} style={{animation: "stick 18s ease-out infinite", animationDelay: `${index}s`}}></div>
             </Paper>
           </ReactCardFlip>
         </div>
@@ -129,12 +179,12 @@ export default function Home() {
             <div className="coaching-line mb-5"/>
             <WLTextV2 size={24} editable={userCanEditText} firestoreId="why-coaching-subtitle" />
             <div className="row w-100 d-flex flex-row justify-content-center" >
-              <WhyPaper id="card-navigate" />
-              <WhyPaper id="card-discover" />
-              <WhyPaper id="card-direction" />
-              <WhyPaper id="card-overcome" />
-              <WhyPaper id="card-accountable" />
-              <WhyPaper id="card-organized" />
+              <WhyPaper id="card-navigate" index={0}    />
+              <WhyPaper id="card-discover" index={1}    />
+              <WhyPaper id="card-direction" index={2}   />
+              <WhyPaper id="card-overcome" index={3}    />
+              <WhyPaper id="card-accountable" index={4} />
+              <WhyPaper id="card-organized" index={5}   />
             </div>
           </div>
         </section>
