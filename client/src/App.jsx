@@ -103,8 +103,8 @@ export function App(props) {
                 </WLFooterSocials>
                 <Spacer y={1} />
                   <WLTextV2 firestoreId="contact-name" />
-                  <Link href="mailto:rachel@anewdaycoaching.com">
-                    <Text css={{textDecoration:"underline"}}>rachel@anewdaycoaching.com</Text>
+                  <Link href="mailto:rachel.newday@gmail.com">
+                    <Text css={{textDecoration:"underline"}}>rachel.newday@gmail.com</Text>
                   </Link>
                   <Link href="callto:2027982343">
                     <Text css={{textDecoration:"underline"}}>(202) 798-ADHD</Text>
